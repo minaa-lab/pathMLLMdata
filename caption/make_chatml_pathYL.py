@@ -25,13 +25,14 @@ def make_chatml_pathYL(pathYL_IMG_PATH,pathYL_ANNOTATION_PATH,caption_chatml_pat
             img_path = pathYL_IMG_PATH + img_id + '.png'
             img_caption_list = value['caption']
             img_label = value['label']
-            if img_label != 0:
-                query= random.choice(query_list_lesion)
-                query="<img>"+img_path+"</img> "+query
-
-                id="caption"+"_"+"pathYL"+"_"+img_id
-                answer = img_caption_list[0]
-                caption_chatml_pathYL.append({"id":id,"conversations":[{"from":"user","value":query},{"from":"assistant","value":answer}]})
+            if img_label != 0 and img_label != 3:
+                for j in range(1,len(img_caption_list)):
+                    query= random.choice(query_list_lesion)
+                    query="<img>"+img_path+"</img> "+query
+                    id = "caption" + "_" + "pathYL" + "_" + img_id+"_"+str(j)
+                    answer = img_caption_list[j]
+                    caption_chatml_pathYL.append({"id":id,"conversations":[{"from":"user","value":query},{"from":"assistant","value":answer}]})
+                # caption_chatml_pathYL.append({"id":id,"conversations":[{"from":"user","value":query},{"from":"assistant","value":answer}]})
             elif img_label ==0:
                 query= random.choice(query_list_normal)
                 query="<img>"+img_path+"</img> "+query

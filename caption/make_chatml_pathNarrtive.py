@@ -24,7 +24,7 @@ def make_chatml_pathNarrtive(path_Narrtive_IMG_PATH,path_Narrtive_ANNOTATION_PAT
         caption = annotation[i]['caption']
         patch_list=annotation[i]['patches']
         label=subtypes2label[annotation[i]['subtype']]
-        max_patch=18
+        max_patch=50
         if len(patch_list)<max_patch:
             max_patch=len(patch_list)
         j_list=random.sample(range(len(patch_list)),max_patch)
