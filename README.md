@@ -10,12 +10,12 @@
 
 Dataset
 
-|  No. |       Name      |                         Link                               |  Count  |
-|:----:|:---------------:|:----------------------------------------------------------:|:-------:|
-|   1  |      PathYL     |    https://figshare.com/projects/nmi-wsi-diagnosis/61973   |  14337  |
-|   2  |PatchGastricADC22| https://github.com/masatsuneki/histopathology-image-caption|         |
-|   3  |   PathNarrative |                                                            |patch2454  |wsi   83 |
-|   4  |      OpenPath   |             https://tinyurl.com/openpathdata               |         |
+|  No. |       Name      |                         Link                               |         Count       |
+|:----:|:---------------:|:----------------------------------------------------------:|:-------------------:|
+|   1  |      PathYL     |    https://figshare.com/projects/nmi-wsi-diagnosis/61973   |         14337       |
+|   2  |PatchGastricADC22| https://github.com/masatsuneki/histopathology-image-caption|                     |
+|   3  |   PathNarrative |                                                            |  patch2454  wsi  83 |
+|   4  |      OpenPath   |             https://tinyurl.com/openpathdata               |                     |
 
 
 ## vqa
