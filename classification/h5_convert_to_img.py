@@ -1,4 +1,5 @@
-
+5# 作者：韦芃臣
+# 2023年11月06日19时57分03秒
 import h5py
 from PIL import Image
 import numpy as np
@@ -9,8 +10,8 @@ h5_file = h5py.File(r'C:\LuoLab\pathMLLMdata\classification\PCam\camelyonpatch_l
 # 获取图像数据
 images_data = h5_file['x']  # 假设数据集名称为 "images"
 
-# 遍历前 500 行数据并保存为图像文件
-for i, img_data in enumerate(images_data[:5000]):
+# 遍历前 10000 行数据并保存为图像文件
+for i, img_data in enumerate(images_data[:10000]):
     # 假设图像数据是二维数组
     img = Image.fromarray(img_data, mode='RGB')  # 'L' 表示灰度图像
 

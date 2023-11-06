@@ -1,7 +1,8 @@
-import h5py
 import json
 import os
-from PIL import Image
+import random
+
+import h5py
 
 # 指定 PNG 图像文件夹路径
 images_folder = 'C:\LuoLab\pathMLLMdata\classification\PCam\images'
@@ -19,6 +20,7 @@ query_list_cancer = ["Does this image contain cancerous cells?",
 query_list_normal = ["Describe the features in this image.",
                      "Please provide details about this image."]
 
+
 def get_label_value(label_data):
     # 提取有效的标签值，根据具体情况可能需要修改索引
     return label_data[0][0][0]
@@ -30,23 +32,21 @@ def make_chatml_data(images_folder, labels_file, caption_chatml_data):
 
     # 打开 HDF5 标签文件
     with h5py.File(labels_file, 'r') as labels_h5:
-        labels = labels_h5['y'][:5001]  # 假设 HDF5 数据集名称为 "labels"
+        labels = labels_h5['y'][:10001]
 
     for i, image_file in enumerate(image_files):
         img_path = os.path.join(images_folder, image_file)
         img_label = get_label_value(labels[i])  # 获取有效的标签值
 
-        # 创建用户查询，选择适当的查询列表
         if img_label == 1:  # 包含癌症细胞
-            query = query_list_cancer[i % len(query_list_cancer)]
+            query = random.choice(query_list_cancer)
 
         else:  # 正常图像
-            query = query_list_normal[i % len(query_list_normal)]
+            query = random.choice(query_list_normal)
 
         query = "<img>" + img_path + "</img> " + query
         id = "image_" + str(i)
 
-        # 创建助手回复，这里可以根据需要自定义回复内容
         if img_label == 1:
             answer = "Yes, this image contains cancerous cells."
         else:
@@ -60,7 +60,6 @@ if __name__ == '__main__':
     caption_chatml_data = []
     make_chatml_data(images_folder, labels_file, caption_chatml_data)
 
-    # 将 ChatML 数据保存为 JSON 文件
     with open('C:\LuoLab\pathMLLMdata\classification\PCam\chatml_data.json', 'w') as json_file:
         json.dump(caption_chatml_data, json_file)
 
