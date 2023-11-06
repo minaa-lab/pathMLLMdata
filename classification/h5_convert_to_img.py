@@ -1,5 +1,4 @@
-5# 作者：韦芃臣
-# 2023年11月06日19时57分03秒
+
 import h5py
 from PIL import Image
 import numpy as np
