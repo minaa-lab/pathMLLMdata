@@ -15,7 +15,7 @@ Dataset
 | No.  |      Name       |                             Link                             | Count |
 | :--: | :-------------: | :----------------------------------------------------------: | :---: |
 |  1   |      PCam       | [basveeling/pcam: The PatchCamelyon (PCam) deep learning classification benchmark. (github.com)](https://github.com/basveeling/pcam) | 10000 |
-|  2   | NCT-CRC-HE-100K | [100,000 histological images of human colorectal cancer and healthy tissue (zenodo.org)](https://zenodo.org/records/1214456) | 10000 |
+|  2   | NCT-CRC-HE-100K | [100,000 histological images of human colorectal cancer and healthy tissue (zenodo.org)](https://zenodo.org/records/1214456) | 7180 |
 
 
 
