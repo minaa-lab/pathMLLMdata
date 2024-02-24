@@ -18,23 +18,13 @@ abbr_to_full = {
     "TUM": "Colorectal Adenocarcinoma Epithelium"
 }
 
-
-# 初始化问答对列表
-qa_pairs = []
+# 初始化对话列表
+conversations = []
 
 # 设置图像ID的初始值
-image_id = 1
+image_id = 0
 
-# 定义多样的问题列表
-question_templates = [
-    "Which category does this image belong to?",
-    "What is the primary category for this image?",
-    "Identify the category of this image.",
-    "Specify the class of this image.",
-    "Categorize this image."
-]
-
-# 构造问答对
+# 构造对话
 for i in range(7180):
     folder_name = random.choice(list(abbr_to_full.keys()))
     folder_path = os.path.join(dataset_path, folder_name)
@@ -42,25 +32,29 @@ for i in range(7180):
     image_file = random.choice(image_files)
 
     image_path = os.path.join(folder_path, image_file)
-    question = random.choice(question_templates)
-    multiple_choices = list(abbr_to_full.values())
-    answer = abbr_to_full[folder_name]
-    qa_id = image_id
 
-    qa_pairs.append({
-        "image_id": image_id,
-        "question": question,
-        "multiple_choices": multiple_choices,
-        "qa_id": qa_id,
-        "answer": answer,
-        "type": "category"
-    })
+    # 用户问题
+    user_question = f"Which category does this pathological images belong to? Choose one of the following categories: 'Adipose', 'Background', 'Debris', 'Lymphocytes', 'Mucus', 'Smooth Muscle', 'Normal Colon Mucosa', 'Cancer-Associated Stroma', 'Colorectal Adenocarcinoma Epithelium' <img>{image_path}</img>"
 
+    # 生成随机的助手回答
+    selected_category = random.choice(list(abbr_to_full.values()))
+    assistant_answer = f"{selected_category}"
+
+    # 为每个对话分配独立的ID
+    conversation_id = f"image_{image_id}"
+
+    # 添加对话阶段
+    conversations.append({"id": conversation_id, "conversations": [
+        {"from": "user", "value": user_question},
+        {"from": "assistant", "value": assistant_answer}
+    ]})
+
+    # 更新图像ID
     image_id += 1
 
-# 将问答对保存为JSON文件
+# 将 JSON 数据保存为文件
 output_file = 'C:\LuoLab\pathMLLMdata\classification\CRC-VAL-HE-7K\CRC_VAL_HE_7K_chatml.json'
 with open(output_file, 'w') as f:
-    json.dump({"qa_pairs": qa_pairs}, f, indent=2)
+    json.dump(conversations, f, indent=2)
 
-print(f"{len(qa_pairs)} QA pairs created and saved in {output_file}")
+print(f"{len(conversations)} conversation stages created and saved in {output_file}")
